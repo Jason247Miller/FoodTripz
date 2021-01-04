@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace WebFormPractice
 {
-    public partial class RecipientHome : System.Web.UI.Page
+    public partial class PublicDonorPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
+
         }
     }
 }
