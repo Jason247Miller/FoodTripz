@@ -5,26 +5,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <table class="nav-justified">
         <tr>
             <td style="height: 20px">
-                <asp:Label ID="LabelWelcome" runat="server" Font-Size="XX-Large" Text="Welcome...."></asp:Label>
+                <asp:Label ID="LabelWelcome" runat="server" Font-Size="XX-Large" Text="Welcome"></asp:Label>
             </td>
             <td style="height: 20px"></td>
             <td style="height: 20px"></td>
