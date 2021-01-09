@@ -34,8 +34,8 @@
                 <td>
                     <asp:DropDownList ID="DropDownUserType" runat="server" Width="206px">
                         <asp:ListItem>Select User Type</asp:ListItem>
-                        <asp:ListItem>Food Donor</asp:ListItem>
-                        <asp:ListItem>Food Recipient</asp:ListItem>
+                        <asp:ListItem Value="Donor">Food Donor</asp:ListItem>
+                        <asp:ListItem Value="Recipient">Food Recipient</asp:ListItem>
                         <asp:ListItem>Administrator</asp:ListItem>
                     </asp:DropDownList>
                     <strong>

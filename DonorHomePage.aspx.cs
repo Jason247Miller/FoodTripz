@@ -11,9 +11,9 @@ namespace WebFormPractice
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["New"]!= null)
+            if (Session["Username"]!= null)
             {
-                LabelWelcome.Text += Session["New"].ToString(); 
+                LabelWelcome.Text += " " + Session["Username"].ToString(); 
             }
             else
             {
@@ -23,7 +23,7 @@ namespace WebFormPractice
 
         protected void ButtonLogOut_Click(object sender, EventArgs e)
         {
-            Session["New"] = null;
+            Session["Username"] = null;
             Response.Redirect("Login.aspx");
 
         }

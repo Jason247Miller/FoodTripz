@@ -161,10 +161,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Login.aspx" />
+    <Content Include="Login.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Manager.aspx" />
     <Content Include="PublicDonorPage.aspx" />
-    <Content Include="RecipientHome.aspx" />
+    <Content Include="RecipientHomePage.aspx" />
     <Content Include="RecipientRegisteration.aspx" />
     <Content Include="RegistrationPageDirector.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -238,9 +240,11 @@
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Manager.aspx.cs">
       <DependentUpon>Manager.aspx</DependentUpon>
@@ -257,12 +261,12 @@
     <Compile Include="PublicDonorPage.aspx.designer.cs">
       <DependentUpon>PublicDonorPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RecipientHome.aspx.cs">
-      <DependentUpon>RecipientHome.aspx</DependentUpon>
+    <Compile Include="RecipientHomePage.aspx.cs">
+      <DependentUpon>RecipientHomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RecipientHome.aspx.designer.cs">
-      <DependentUpon>RecipientHome.aspx</DependentUpon>
+    <Compile Include="RecipientHomePage.aspx.designer.cs">
+      <DependentUpon>RecipientHomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecipientRegisteration.aspx.cs">
       <DependentUpon>RecipientRegisteration.aspx</DependentUpon>

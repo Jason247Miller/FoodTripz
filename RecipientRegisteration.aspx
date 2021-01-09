@@ -62,17 +62,10 @@
             </tr>
             <tr>
                 <td class="auto-style2" style="width: 100px">
-                    <h2 class="text-right" style="font-size: large"><strong>User Type:</strong></h2>
+                    <h2 class="text-right" style="font-size: large">&nbsp;</h2>
                 </td>
                 <td class="auto-style4" style="width: 572px">
-                    <asp:DropDownList ID="DropDownListUserType" runat="server" Width="206px">
-                        <asp:ListItem>Select User Type</asp:ListItem>
-                        <asp:ListItem>Food Donor</asp:ListItem>
-                        <asp:ListItem>Food Recipient</asp:ListItem>
-                    </asp:DropDownList>
-                    <strong>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DropDownListUserType" ErrorMessage="RequiredFieldValidator" ForeColor="Red" InitialValue="Select User Type">Select a user type</asp:RequiredFieldValidator>
-                    </strong></td>
+                    &nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
