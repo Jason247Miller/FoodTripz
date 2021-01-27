@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DonorHomePage.aspx.cs" Inherits="WebFormPractice.DonorHomePage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-
-
-
-
     <table class="nav-justified">
         <tr>
             <td style="height: 20px">

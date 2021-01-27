@@ -9,16 +9,18 @@
         </div>
         <table class="auto-style2">
             <tr>
-                <td class="auto-style3"><strong>Username</strong>
+                <td class="text-right"><strong>Email </strong>
                 </td>
                 <td>
-                    <asp:TextBox ID="TextBoxUsername" runat="server" Width="180px"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxEmail" runat="server" Width="180px" style="margin-left: 0px; margin-right: 66px"></asp:TextBox>
                     <strong>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxUsername" ErrorMessage="Please enter Username" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxEmail" ErrorMessage="Please enter Email" ForeColor="Red"></asp:RequiredFieldValidator>
                     </strong>
 
                 </td>
-                <td>&nbsp;</td>
+                <td style="width: 145px">
+                    <asp:Label ID="LabelEmailInvalid" runat="server" Font-Size="Small" ForeColor="#CC0000" Text="Label" Visible="False"></asp:Label>
+                </td>
             </tr>
             <tr>
                 <td class="auto-style3"><strong>Password</strong></td>
@@ -27,7 +29,9 @@
                     <strong>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBoxPassword" ErrorMessage="Please Enter Password" ForeColor="Red"></asp:RequiredFieldValidator>
                     </strong></td>
-                <td>&nbsp;</td>
+                <td style="width: 145px">
+                    <asp:Label ID="LabelPasswordInvalid" runat="server" Font-Size="Small" ForeColor="#CC0000" Text="Label" Visible="False"></asp:Label>
+                </td>
             </tr>
             <tr>
                 <td class="auto-style3"><strong>User Type</strong></td>
@@ -42,14 +46,20 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DropDownUserType" ErrorMessage="RequiredFieldValidator" ForeColor="Red" InitialValue="Select User Type">Select a user type</asp:RequiredFieldValidator>
                     </strong>
                 </td>
+                <td style="width: 145px">
+                    <asp:Label ID="LabelUserTypeNotSelected" runat="server" Font-Size="Small" ForeColor="#CC0000" Text="Label" Visible="False"></asp:Label>
+                </td>
                 <td>&nbsp;</td>
+             <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">&nbsp;</td>
                 <td>
                     <asp:Button ID="Button_Login" runat="server" OnClick="Button_Login_Click" Text="Login" Width="82px" />
                 </td>
-                <td>&nbsp;</td>
+                <td style="width: 145px">&nbsp;</td>
             </tr>
-        </table>
+            <tr><td></td><td>
+                <a href="#" onclick="window.open('ForgotPassword.aspx', 'FP', 'width=700, height=200,top=400,left=500,fullscreen=no,resizeable=0');">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;</td></tr>
+            </table>
 </asp:Content>

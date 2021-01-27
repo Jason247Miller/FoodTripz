@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Windows;
 
 namespace WebFormPractice
 { public partial class Login : System.Web.UI.Page
@@ -17,6 +18,8 @@ namespace WebFormPractice
         }
         protected void Button_Login_Click(object sender, EventArgs e)
         {
+            LabelPasswordInvalid.Text = "";
+            LabelEmailInvalid.Text = ""; 
             userType = DropDownUserType.SelectedValue;
             string checkuser = "";
          
@@ -26,33 +29,45 @@ namespace WebFormPractice
             if (userType != "Select User Type")
             {
                 
-                checkuser = "select count(*) from " + userType + " where UserName='" +
-                                                           TextBoxUsername.Text + "'";
+                checkuser = "select count(*) from " + userType + " where Email='" +
+                                                           TextBoxEmail.Text + "'";
                 SqlCommand com = new SqlCommand(checkuser, conn);
                 int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
                 conn.Close();
-                if (temp == 1) //user exists
+                if (temp == 1) //email exists
                 {
                     conn.Open();
-                    string checkPasswordQuery = "select Password from " + userType + " where UserName='" +
-                                                TextBoxUsername.Text + "'";
+                    string checkPasswordQuery = "select Password from " + userType + " where Email='" +
+                                                TextBoxEmail.Text + "'";
                     SqlCommand passComm = new SqlCommand(checkPasswordQuery, conn);
                     string password = passComm.ExecuteScalar().ToString().Replace(" ", "");
                     if (password == TextBoxPassword.Text)
                     {
-                        Session["Username"] = TextBoxUsername.Text;
+                        Session["Email"] = TextBoxEmail.Text;
                         Response.Write("Password is correct");
                         Response.Redirect(userType + "HomePage.aspx");
                     }
-                    else {Response.Write("Password is not correct");}
+                    else {
+                        LabelPasswordInvalid.Visible = true; 
+                        LabelPasswordInvalid.Text = "Password Invalid"; }
                 }
-                else{Response.Write("Username is not present");}
+                else
+                {   LabelEmailInvalid.Visible = true;
+                    LabelEmailInvalid.Text = "email invalid"; 
+                }
                 conn.Close();
             }
-            else{Response.Write("Username is not present");}
+            else{ LabelUserTypeNotSelected.Visible = true;
+                   LabelUserTypeNotSelected.Text =  "Select Usertype";
+            }
             conn.Close();
          
         }
-        
+
+        protected void LinkButtonForgotPassword_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ForgotPassword.aspx?Type=userType"); 
+
+        }
     }
 }

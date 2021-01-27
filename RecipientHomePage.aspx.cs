@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-
-
-
+using System.Web;
 
 namespace WebFormPractice
 {
@@ -15,27 +13,25 @@ namespace WebFormPractice
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+           
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+
             string markers = GetMarkers();
             
 
-            Literal1.Text = @" <script type = 'text/javascript' >
-              var lng = 0;
-              var lat = 0; 
-              if(navigator.geolocation)
-              {
-               navigator.geolocation.getCurrentPosition(showPosition);
-                                        
-                function showPosition(position){
-                       lng = position.coords.longitude;
-                       lat = position.coords.latitude; 
-                                               }
-                }
-              else{ document.write(""geolocation is not working"");}
+            Literal1.Text = @"<script type = 'text/javascript' >
+             
+              
+             
+                  
               
                  function initialize() {
+               window.history.forward(-1);
+             
                 var mapOptions = {
-                center: new google.maps.LatLng(lat, lng ),
+                center: new google.maps.LatLng(40.4406, -79.9959 ),
                 zoom: 8,
                  mapTypeId: google.maps.MapTypeId.ROADMAP
                  };
@@ -55,8 +51,8 @@ namespace WebFormPractice
             using (SqlConnection con = new
                 SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT Latitude, Longitude, City " +
-                    "FROM Locations");
+                
+                SqlCommand cmd = new SqlCommand("SELECT Donor_ID as donor_ID, company_name as company, Latitude as lat, Longitude as lng FROM Donor inner join Locations on Donor.Location_ID = Locations.Location_ID");
                 cmd.Connection = con;
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -66,27 +62,35 @@ namespace WebFormPractice
                 {
                     i++;
                     markers += @"var marker" + i.ToString() + @" = new google.maps.Marker({
-    position: new google.maps.LatLng(" + reader["Latitude"].ToString() + ", " +
-      reader["Longitude"].ToString() + ")," +
+    position: new google.maps.LatLng(" + reader["lat"].ToString() + ", " +
+      reader["lng"].ToString() + ")," +
       @"map: myMap,
-     title: '" + reader["City"].ToString() + "'}); " +
-     @"var contentString = ""<div id='content'><h1>Giant Eagle</h1><p>We have"+
-       @"plenty of items we need to donate!</p><a href='PublicDonorPage.aspx'>Visit their page</a></div>"";" +
-
-     @"var infowindow = new google.maps.InfoWindow({ content: contentString});" +
+     title: '" + reader["company"].ToString() + "'}); " +
+     @"var contentString = ""<div id='content'><h1>" + reader["company"].ToString() + "</h1><p>We have" +
+                                                             //pass donorID below
+       @"plenty of items we need to donate!</p>"+ @"<a href='PublicDonorPage.aspx?donorID=" + reader["donor_ID"].ToString() + "'" +
+       @">Visit their page</a></div>"";" +
+       @"var infowindow = new google.maps.InfoWindow({ content: contentString});" +
      @"marker" + i.ToString() + ".addListener('click', function(){infowindow.open(" +
      @"myMap,marker" + i.ToString() + "); });";
   
 
                 }
             }
+            
             return markers;
 
         }
-   
-        protected void Button1_Click(object sender, EventArgs e)
-        {
 
+        protected void LinkButtonLogOff_Click(object sender, EventArgs e)
+        {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+            Session.Abandon();
+            Request.Cookies.Clear();
+            Response.Cache.SetSlidingExpiration(true);
+            Response.Redirect("/Default.aspx", true);
         }
     }
 }
