@@ -23,6 +23,10 @@ namespace WebFormPractice
                 {
                     Response.Redirect("RecipientRegisteration.aspx");
                 }
+                else if(DropDownListUserType.SelectedValue == "Food Donor")
+                {
+                    Response.Redirect("DonorRegistrationPage.aspx");
+                }
             }
         }
     }

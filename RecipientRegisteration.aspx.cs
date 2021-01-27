@@ -22,14 +22,21 @@ namespace WebFormPractice
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString);
                     conn.Open();
 
-                    string checkuser = "select count(*) from Recipient where UserName='" + TextBoxUser.Text + "'";
+                    string checkuser = "select count(*) from Recipient where Email='" + TextBoxEmail.Text + "'";
                     SqlCommand com = new SqlCommand(checkuser, conn);
                     int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
-                    if (temp == 1)
-                    {
-                        Response.Write("Recipient already Exists under this username!");
-                    }
+                //if the email exists
+                if (temp >=1)
+                {
+                    LabelEmailError.Visible = true; 
+                    LabelEmailError.Text = "Email already exists!";
                     conn.Close();
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+                   
                 
                 
 
@@ -49,16 +56,22 @@ namespace WebFormPractice
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString);
                     conn.Open();
                     //need to adjust for recipient and not donor
-                    string insertQuery = "insert into Recipient (UserName,Email, Password) values ( @Uname, @email, @password)";
+                    string insertQuery = "insert into Recipient (Email,Password,lname,fname,zip,phone) values ( @email, @password, @lname,@fname,@zip,@phone)";
                     SqlCommand com = new SqlCommand(insertQuery, conn);
 
-                    com.Parameters.AddWithValue("@Uname", TextBoxUser.Text);
+                   
                     com.Parameters.AddWithValue("@email", TextBoxEmail.Text);
                     com.Parameters.AddWithValue("@password", TextBoxPass.Text);
-                    com.ExecuteNonQuery();
-                    //redirects the user to a different page
-                    Response.Redirect("Manager.aspx");
-                    Response.Write("Registration was successful");
+                    com.Parameters.AddWithValue("@lname", TextBoxLname.Text);
+                    com.Parameters.AddWithValue("@fname", TextBoxFname.Text);
+                    com.Parameters.AddWithValue("@zip", TextBoxZip.Text);
+                    com.Parameters.AddWithValue("@phone", TextBoxPhone.Text);
+
+
+                com.ExecuteNonQuery();
+                   
+                   
+                    //Response.Write("Registration was successful");
 
                     conn.Close();
                 }
@@ -69,10 +82,7 @@ namespace WebFormPractice
 
             
             
-            TextBoxUser.Text = "";
-            TextBoxPass.Text = "";
-            TextBoxConfirmPass.Text = "";
-            TextBoxEmail.Text = "";
+            
            
            
         }

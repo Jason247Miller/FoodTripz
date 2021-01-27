@@ -7,13 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace WebFormPractice
 {
-    public partial class SiteMaster : MasterPage
+    public partial class DonorRegistration : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            //Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
-            //Response.Cache.SetNoStore();
+
         }
     }
 }
