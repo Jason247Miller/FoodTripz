@@ -45,7 +45,7 @@ namespace WebFormPractice
                 smtp.EnableSsl = true;
                 NetworkCredential nc = new NetworkCredential();
                 nc.UserName = "jason.miller.6695@gmail.com";
-                nc.Password = "Uigkib123!";
+                nc.Password = "";
                 smtp.UseDefaultCredentials = true;
                 smtp.Credentials = nc;
                 smtp.Port = 587;
