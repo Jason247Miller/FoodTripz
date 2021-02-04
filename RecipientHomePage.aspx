@@ -5,6 +5,11 @@
     <title>
         Recipient Home page
     </title>
+    
+     
+           
+          
+       
     <style type="text/css">
         body {
     text-align: center;

@@ -14,7 +14,10 @@ namespace WebFormPractice
         public string userType; 
         protected void Page_Load(object sender, EventArgs e)
         {
-                                    
+            Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+
         }
         protected void Button_Login_Click(object sender, EventArgs e)
         {
@@ -44,6 +47,7 @@ namespace WebFormPractice
                     if (password == TextBoxPassword.Text)
                     {
                         Session["Email"] = TextBoxEmail.Text;
+                        Session["logged"] = "loggedIN";
                         Response.Write("Password is correct");
                         Response.Redirect(userType + "HomePage.aspx");
                     }
