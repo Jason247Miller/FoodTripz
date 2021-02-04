@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Manager.aspx.cs" Inherits="WebFormPractice.Manager" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminHomePage.aspx.cs" Inherits="WebFormPractice.Manager" %>
 
 <!DOCTYPE html>
 
@@ -23,17 +23,33 @@
         .auto-style5 {
             height: 23px;
         }
+        .auto-style6 {
+            text-align: center;
+        }
+        .auto-style7 {
+            width: 100%;
+            height: 148px;
+        }
+        .auto-style8 {
+            width: 1177px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <asp:SqlDataSource ID="SqlDataSourceRegistration" runat="server" ConnectionString="<%$ ConnectionStrings:RegistrationConnectionString %>" SelectCommand="SELECT * FROM [Recipient]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourceDonors" runat="server" ConnectionString="<%$ ConnectionStrings:RegistrationConnectionString %>" SelectCommand="SELECT [Donor_ID], [Email] FROM [Donor]"></asp:SqlDataSource>
         </div>
-        <h2>
+        <h2 class="auto-style6">
             <asp:Label ID="LabelTable" runat="server" Text="Recipient"></asp:Label>
         </h2>
-        <asp:GridView ID="GridView1" runat="server" Height="146px" Width="750px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="Id" DataSourceID="SqlDataSourceRegistration">
+        <div class="auto-style6">
+            <div></div>
+            <table class="auto-style7">
+                <tr>
+                    <td class="auto-style8">
+        <asp:GridView ID="GridView1" runat="server" Height="183px" Width="932px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlDataSourceRegistration" AutoGenerateColumns="False">
             <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
             <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
             <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
@@ -44,6 +60,19 @@
             <SortedDescendingCellStyle BackColor="#D6DFDF" />
             <SortedDescendingHeaderStyle BackColor="#002876" />
         </asp:GridView>
+                
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            <table class="auto-style1">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+                
+        </div>
         <br />
         <table class="auto-style1">
             <tr>

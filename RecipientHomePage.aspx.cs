@@ -13,22 +13,25 @@ namespace WebFormPractice
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
-            Response.Cache.SetNoStore();
+
+            if (!Page.IsPostBack)
+            {
+                if (Session["logged"] == null)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+            }
+
+             
+
 
             string markers = GetMarkers();
-            
 
-            Literal1.Text = @"<script type = 'text/javascript' >
-             
-              
-             
-                  
-              
+          //  if (postback) { }
+                Literal1.Text = @"<script type = 'text/javascript' >
+                              
                  function initialize() {
-               window.history.forward(-1);
+                
              
                 var mapOptions = {
                 center: new google.maps.LatLng(40.4406, -79.9959 ),
@@ -41,7 +44,8 @@ namespace WebFormPractice
             markers +
              @" " +
           "} </script> ";
-
+            
+           
         }
         protected string GetMarkers()
         {
@@ -84,6 +88,7 @@ namespace WebFormPractice
 
         protected void LinkButtonLogOff_Click(object sender, EventArgs e)
         {
+
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();

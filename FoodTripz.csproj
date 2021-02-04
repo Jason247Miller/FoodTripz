@@ -167,7 +167,7 @@
     <Content Include="Login.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Manager.aspx" />
+    <Content Include="AdminHomePage.aspx" />
     <Content Include="PublicDonorPage.aspx" />
     <Content Include="RecipientHomePage.aspx" />
     <Content Include="RecipientRegisteration.aspx" />
@@ -263,12 +263,12 @@
       <DependentUpon>Login.aspx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Manager.aspx.cs">
-      <DependentUpon>Manager.aspx</DependentUpon>
+    <Compile Include="AdminHomePage.aspx.cs">
+      <DependentUpon>AdminHomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Manager.aspx.designer.cs">
-      <DependentUpon>Manager.aspx</DependentUpon>
+    <Compile Include="AdminHomePage.aspx.designer.cs">
+      <DependentUpon>AdminHomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicDonorPage.aspx.cs">
