@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 /* turd */
+
+
 namespace WebFormPractice
 {
     public partial class Manager : System.Web.UI.Page
