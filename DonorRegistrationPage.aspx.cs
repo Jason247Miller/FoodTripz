@@ -48,7 +48,7 @@ namespace WebFormPractice
 
 
             try
-            {   //Everytime button is clicked, a new unique id will be generated
+            {   
 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString);
                 conn.Open();
@@ -65,8 +65,8 @@ namespace WebFormPractice
 
                 com.ExecuteNonQuery();
 
-
-                //Response.Write("Registration was successful");
+                
+                
 
                 conn.Close();
             }

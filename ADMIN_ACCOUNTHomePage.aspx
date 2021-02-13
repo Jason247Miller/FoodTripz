@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminHomePage.aspx.cs" Inherits="WebFormPractice.Manager" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ADMIN_ACCOUNTHomePage.aspx.cs" Inherits="WebFormPractice.Manager" %>
 
 <!DOCTYPE html>
 

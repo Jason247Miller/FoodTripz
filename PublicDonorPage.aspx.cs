@@ -49,5 +49,19 @@ namespace WebFormPractice
         {
             Response.Redirect("RecipientHomePage.aspx"); 
         }
+
+        protected void GridViewProducts_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "AddToCart")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridViewProducts.Rows[index];
+                //AddShopCart(row.Cells[1].Text.ToString()); 
+                //need to add item to order table
+            }
+            {
+
+            }
+        }
     }
 }
