@@ -38,8 +38,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:SqlDataSource ID="SqlDataSourceRegistration" runat="server" ConnectionString="<%$ ConnectionStrings:RegistrationConnectionString %>" SelectCommand="SELECT * FROM [Recipient]"></asp:SqlDataSource>
-            <asp:SqlDataSource ID="SqlDataSourceDonors" runat="server" ConnectionString="<%$ ConnectionStrings:RegistrationConnectionString %>" SelectCommand="SELECT [Donor_ID], [Email] FROM [Donor]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSourceRegistration" runat="server" ConnectionString="<%$ ConnectionStrings:RegistrationConnectionString %>" SelectCommand="SELECT * FROM [RECIPIENT]"></asp:SqlDataSource>
         </div>
         <h2 class="auto-style6">
             <asp:Label ID="LabelTable" runat="server" Text="Recipient"></asp:Label>
@@ -49,7 +48,16 @@
             <table class="auto-style7">
                 <tr>
                     <td class="auto-style8">
-        <asp:GridView ID="GridView1" runat="server" Height="183px" Width="932px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlDataSourceRegistration" AutoGenerateColumns="False">
+        <asp:GridView ID="GridView1" runat="server" Height="183px" Width="932px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlDataSourceRegistration" AutoGenerateColumns="False" DataKeyNames="RECIPIENT_ID">
+            <Columns>
+                <asp:BoundField DataField="RECIPIENT_ID" HeaderText="RECIPIENT_ID" InsertVisible="False" ReadOnly="True" SortExpression="RECIPIENT_ID" />
+                <asp:BoundField DataField="FIRST_NAME" HeaderText="FIRST_NAME" SortExpression="FIRST_NAME" />
+                <asp:BoundField DataField="LAST_NAME" HeaderText="LAST_NAME" SortExpression="LAST_NAME" />
+                <asp:BoundField DataField="EMAIL" HeaderText="EMAIL" SortExpression="EMAIL" />
+                <asp:BoundField DataField="PHONE_NUM" HeaderText="PHONE_NUM" SortExpression="PHONE_NUM" />
+                <asp:BoundField DataField="PASSWORD" HeaderText="PASSWORD" SortExpression="PASSWORD" />
+                <asp:BoundField DataField="ZIP" HeaderText="ZIP" SortExpression="ZIP" />
+            </Columns>
             <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
             <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
             <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />

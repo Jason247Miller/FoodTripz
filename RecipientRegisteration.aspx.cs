@@ -56,7 +56,7 @@ namespace WebFormPractice
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString);
                     conn.Open();
                     //need to adjust for recipient and not donor
-                    string insertQuery = "insert into Recipient (Email,Password,lname,fname,zip,phone) values ( @email, @password, @lname,@fname,@zip,@phone)";
+                    string insertQuery = "insert into Recipient (FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUM,PASSWORD,ZIP) values (@fname,@lname, @email,@phone, @password,@zip)";
                     SqlCommand com = new SqlCommand(insertQuery, conn);
 
                    
