@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace WebFormPractice
 {
@@ -48,7 +49,7 @@ namespace WebFormPractice
         //Button1 is Submit Button
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
+            Debug.WriteLine("inside button click");
 
                 try
                 {   //Everytime button is clicked, a new unique id will be generated
