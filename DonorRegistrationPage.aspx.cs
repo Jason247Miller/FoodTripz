@@ -79,16 +79,7 @@ namespace WebFormPractice
                 {
                     Response.Redirect("Default.aspx");
                 }
-                Response.Redirect("Default.aspx");
-
-
-
-
-
-
-
-
-
+               
 
                 conn.Close();
 
@@ -119,18 +110,9 @@ namespace WebFormPractice
                     cmd.Parameters.AddWithValue("@loc_name", city);
                     cmd.Parameters.AddWithValue("@latitude", lat);
                     cmd.Parameters.AddWithValue("@longitude", longit);
-                  
+                    
                     cmd.ExecuteNonQuery();
                     conn.Close(); 
-
-                
-
-             
-
-
-
-
-
 
 
             }
@@ -139,11 +121,6 @@ namespace WebFormPractice
                 Response.Write("Error from catch:" + ex.ToString());
             }
            
-
-
-
-
-
 
         }
     }

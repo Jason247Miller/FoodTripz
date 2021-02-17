@@ -40,7 +40,7 @@
                         <asp:ListItem>Select User Type</asp:ListItem>
                         <asp:ListItem Value="Donor">Food Donor</asp:ListItem>
                         <asp:ListItem Value="Recipient">Food Recipient</asp:ListItem>
-                        <asp:ListItem Value="Admin">Administrator</asp:ListItem>
+                        <asp:ListItem Value="Administrator">Administrator</asp:ListItem>
                     </asp:DropDownList>
                     <strong>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DropDownUserType" ErrorMessage="RequiredFieldValidator" ForeColor="Red" InitialValue="Select User Type">Select a user type</asp:RequiredFieldValidator>
