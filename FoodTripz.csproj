@@ -239,7 +239,6 @@
     </Compile>
     <Compile Include="DonorRegistrationPage.aspx.cs">
       <DependentUpon>DonorRegistrationPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DonorRegistrationPage.aspx.designer.cs">
       <DependentUpon>DonorRegistrationPage.aspx</DependentUpon>
