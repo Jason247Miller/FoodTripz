@@ -53,7 +53,7 @@ namespace WebFormPractice
             //string lat = "";
             //string lng = ""; 
             using (SqlConnection con = new
-                SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString))
+                SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Database1"].ConnectionString))
             {
                 
                 SqlCommand cmd = new SqlCommand("SELECT Donor_ID as donor_ID, company_name as company, Latitude as lat, Longitude as lng FROM Donor inner join Locations on Donor.Location_ID = Locations.Location_ID");

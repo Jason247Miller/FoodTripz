@@ -54,10 +54,13 @@ namespace WebFormPractice
 
             string _connStr = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
             string _query = "INSERT INTO RECIPIENT(FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUM,PASSWORD,ZIP) values(@fname,@lname, @email,@phone,@password,@zip)";
+           
+
+
             using (SqlConnection conn = new SqlConnection(_connStr))
             {
                 using (SqlCommand comm = new SqlCommand())
-                {
+                {   
                     comm.Connection = conn;
                     comm.CommandType = CommandType.Text;
                     comm.CommandText = _query;
@@ -77,6 +80,9 @@ namespace WebFormPractice
                     {
                         Response.Write("Error:" + ex.ToString());
                     }
+
+
+
                 }
             }
 
