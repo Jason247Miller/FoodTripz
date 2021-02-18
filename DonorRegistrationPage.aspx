@@ -43,10 +43,11 @@
                     <strong>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBoxPass" ErrorMessage="Password is Required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </strong></td>
-            <td style="width: 12px; height: 66px;" class="modal-sm">&nbsp;</td>
+            <td style="width: 12px; height: 66px;" class="modal-sm"><strong>PickupTimes</strong>:</td>
              
             
-            <td style="width: 90px; height: 66px;" class="modal-sm">&nbsp;</td>
+            <td style="width: 90px; height: 66px;" class="modal-sm"><strong><asp:TextBox ID="TextBoxPickupTimes" runat="server" Width="200px"></asp:TextBox>
+                    </strong></td>
              
             
         </tr>
