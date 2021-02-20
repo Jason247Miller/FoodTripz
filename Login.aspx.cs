@@ -27,7 +27,7 @@ namespace WebFormPractice
             string checkuser = "";
          
             SqlConnection conn = new 
-            SqlConnection(ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString);
+            SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
             conn.Open();
             if (userType != "Select User Type")
             {
