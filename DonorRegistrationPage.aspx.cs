@@ -18,11 +18,11 @@ namespace WebFormPractice
         string longit;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Debug.WriteLine("page load donor registration");
+            Debug.WriteLine("page load");
 
             if (IsPostBack)
             {
-                System.Diagnostics.Debug.WriteLine("postback code");
+                System.Diagnostics.Debug.WriteLine("pageload postback");
 
                 lat = TextBoxLatitude.Text;
                  longit = TextBoxLongitude.Text;
@@ -92,7 +92,7 @@ namespace WebFormPractice
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
 
-            System.Diagnostics.Debug.WriteLine("submit button code");
+            Debug.WriteLine("page ");
 
 
            
@@ -105,6 +105,24 @@ namespace WebFormPractice
 
 
 
+
+
+
+
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
+                conn.Open();
+                //insert donor location first
+                string insertQuery = "insert into LOCATIONS(LOC_NAME, LATITUDE, LONGITUDE) values(@loc_name, @latitude, @longitude)";
+
+                SqlCommand cmd = new SqlCommand(insertQuery, conn);
+                cmd.Parameters.AddWithValue("@loc_name", city);
+                cmd.Parameters.AddWithValue("@latitude", latitude);
+                cmd.Parameters.AddWithValue("@longitude", longitude);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+
+
                         com.Parameters.AddWithValue("@email", TextBoxEmail.Text);
                         com.Parameters.AddWithValue("@password", TextBoxPass.Text);
                         com.Parameters.AddWithValue("@company_name", TextBoxCompanyName.Text);
@@ -114,12 +132,18 @@ namespace WebFormPractice
                         com.Parameters.AddWithValue("@lat",TextBoxLatitude.Text );
                         com.Parameters.AddWithValue("@long", TextBoxLongitude.Text);
 
+
                        
                         com.ExecuteNonQuery();
                         conn.Close(); 
                       
 
                        
+
+
+            
+           
+
 
             
 

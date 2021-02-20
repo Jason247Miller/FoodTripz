@@ -16,10 +16,11 @@ namespace WebFormPractice
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Debug.WriteLine("pageload");
             if (IsPostBack)
             {
 
-
+                Debug.WriteLine("pageload postback");
 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
                 conn.Open();
@@ -72,6 +73,7 @@ namespace WebFormPractice
                     comm.Parameters.AddWithValue("@zip", TextBoxZip.Text);
                     try
                     {
+                        Debug.WriteLine("inside try");
                         conn.Open();
                         comm.ExecuteNonQuery();
                     }
