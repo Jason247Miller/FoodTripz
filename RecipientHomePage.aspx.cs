@@ -74,8 +74,8 @@ namespace WebFormPractice
                
 
 
-                while (reader.Read())
-                {
+                //while (reader.Read())
+                //{
 
 
                     while (reader.Read())
@@ -102,8 +102,10 @@ namespace WebFormPractice
                     }
 
 
-                }
+              //  }
+                con.Close();
             }
+
 
             return markers;
 
