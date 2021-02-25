@@ -15,10 +15,11 @@
           
             
              
-             <div>
-                        <asp:GridView ID="GridViewProducts" runat="server" AutoGenerateColumns="False"  Height="266px" Width="858px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" style="margin-top: 14px">
+             <div style="height: 447px">
+                        <asp:GridView ID="GridViewProducts" OnRowCommand="GridViewProducts_RowCommand"
+                            runat="server" AutoGenerateColumns="False"  Height="266px" Width="858px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" style="margin-top: 14px">
                             <Columns>
-                                <asp:ButtonField ButtonType="Button" CommandName="Select" Text="AddToCart" />
+                                <asp:ButtonField ButtonType="Button" CommandName="AddToCart" Text="AddToCart" />
                                 <asp:BoundField DataField="PROD_ID" HeaderText="PROD_ID"  />
                                 <asp:BoundField DataField="PROD_NAME" HeaderText="PROD_NAME" />
                                 <asp:BoundField DataField="PROD_SIZE" HeaderText="PROD_SIZE"  />
@@ -36,6 +37,25 @@
                             <SortedDescendingCellStyle BackColor="#CAC9C9" />
                             <SortedDescendingHeaderStyle BackColor="#00547E" />
                         </asp:GridView>
+                <strong>
+                    <div>
+                        <div>
+
+                         <asp:Label ID="LabelNoProduct" runat="server" Text="Label" Visible="False"></asp:Label>
+                        </div>
+                       <div style="height: 79px">
+
+                <strong>
+
+                           <asp:Button ID="ButtonGoToCart" runat="server" Text="Go To Cart" OnClick="ButtonGoToCart_Click" />
+
+                </strong>
+
+                       </div>
+                        
+
+                        </div>
+                </strong>
     </div>
             </div>
             
