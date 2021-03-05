@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -7,68 +10,68 @@ using System.Web.UI.WebControls;
 
 namespace WebFormPractice
 {
-    public partial class Manager : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            //set recipietn fields for default display
-            BoundField recipient_id = new BoundField();
-            recipient_id.DataField = "Recipient_ID";
-            recipient_id.HeaderText = "Recipient_ID";
-            BoundField email = new BoundField();
-            email.DataField = "Email";
-            email.HeaderText = "Email";
-            GridView1.Columns.Add(recipient_id);
-            GridView1.Columns.Add(email);
-           
 
+
+        protected void Page_Load(object sender, EventArgs e) {
+
+
+            if (!IsPostBack)
+            {
+                GridView1.DataBind();
+                GridView2.DataBind();
+                GridView3.DataBind();
+                GridView4.DataBind();
+            }
 
         }
 
-        protected void ButtonRefresh_Click(object sender, EventArgs e)
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            if (DropDownListTables.SelectedValue == "Recipient Table")
-            {   
-                LabelTable.Text = "Recipient";
-                GridView1.Columns.Clear();
-                BoundField recipient_id = new BoundField();
-                recipient_id.DataField = "Recipient_ID";
-                recipient_id.HeaderText = "Recipient_ID";
-                BoundField email = new BoundField();
-                email.DataField = "Email";
-                email.HeaderText = "Email";
-                GridView1.Columns.Add(recipient_id);
-                GridView1.Columns.Add(email);
+
+            String self = DropDownList1.SelectedValue.ToString();
+
+            if (self == "rt")
+            {
+                recDiv.Visible = true;
+                donorDiv.Visible = false;
+                orderDiv.Visible = false;
+                prodDiv.Visible = false;
+            }
+            else if (self == "dt")
+            {
+                recDiv.Visible = false;
+                donorDiv.Visible = true;
+                orderDiv.Visible = false;
+                prodDiv.Visible = false;
 
             }
-            else if (DropDownListTables.SelectedValue == "Donor Table")
-            {   
-
-
-                LabelTable.Text = "Donor";
-                //clear previous columns
-                GridView1.Columns.Clear();
-
-                
-
-                //Dynamically Created Columns
-                BoundField donor_id = new BoundField();
-                donor_id.DataField = "Donor_ID";
-                donor_id.HeaderText = "Donor_ID";
-                BoundField email = new BoundField();
-                email.DataField = "Email";
-                email.HeaderText = "Email";
-                GridView1.Columns.Add(donor_id);
-                GridView1.Columns.Add(email);
-
-               // SqlDataSourceDonors.SelectCommand = "Select Donor_ID from donor"; 
-
-
-                GridView1.DataSourceID = "SqlDataSourceDonors";
-                GridView1.DataBind(); 
+            else if (self == "ot")
+            {
+                recDiv.Visible = false;
+                donorDiv.Visible = false;
+                orderDiv.Visible = true;
+                prodDiv.Visible = false;
 
             }
+            else if (self == "pt")
+            {
+                recDiv.Visible = false;
+                donorDiv.Visible = false;
+                orderDiv.Visible = false;
+                prodDiv.Visible = true;
+            }
+            else
+            {
+                //no need
+            }
+
+        }
+
+        protected void GridView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
