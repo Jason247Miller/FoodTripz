@@ -145,7 +145,7 @@ namespace WebFormPractice
 
                 
 
-                row.Cells[1].Text.ToString();
+               // row.Cells[1].Text.ToString();
                 Debug.WriteLine("Row qunatity cell value = " + dt.Rows[index][3].ToString());
                 int quantity = Convert.ToInt32(dt.Rows[index][3].ToString());
 

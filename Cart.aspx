@@ -45,7 +45,9 @@
         </tr>
         <tr>
             <td style="width: 217px" class="modal-sm">&nbsp;</td>
-            <td style="width: 780px">&nbsp;</td>
+            <td style="width: 780px">
+                <asp:Button ID="ButtonOrder" runat="server" OnClick="ButtonOrder_Click" Text="Complete Order" Width="134px" />
+            </td>
             <td>&nbsp;</td>
         </tr>
     </table>
