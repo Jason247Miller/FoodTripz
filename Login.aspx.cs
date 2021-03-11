@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows;
-using System.Diagnostics; 
+using System.Diagnostics;
 
 namespace WebFormPractice
 {
@@ -47,7 +47,7 @@ namespace WebFormPractice
                     SqlCommand passComm = new SqlCommand(checkPasswordQuery, conn);
                     string password = passComm.ExecuteScalar().ToString().Replace(" ", "");
                     if (password == TextBoxPassword.Text && verifyDonor())
-                    {   
+                    {
                         Session["Username"] = userType;
                         Session["Email"] = TextBoxEmail.Text;
                         Session["logged"] = "loggedIN";
