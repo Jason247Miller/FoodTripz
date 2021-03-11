@@ -8,7 +8,7 @@ using System.Data;
 
 namespace WebFormPractice
 {
-   
+
     public partial class PublicDonorPage : System.Web.UI.Page
     {
         private string donor_id;
@@ -17,35 +17,35 @@ namespace WebFormPractice
         public int quantity;
         DataTable cart;
 
-        
-        int recipient_id = 0; 
+
+        int recipient_id = 0;
 
 
         protected void Page_Load(object sender, EventArgs e)
 
         {   //create an empty cart instance to take values added from products table and placed on gridview on order page. 
-           
 
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
+
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
             if (Request.QueryString["donorID"] != null) //if a param is passed
             {
                 donor_id = Request.QueryString["donorID"];
                 LabelDonorHeader.Text = company_name;
             }
 
-            
-            if(Session["Email"] != null)
+
+            if (Session["Email"] != null)
             {
                 SqlCommand recipient_id_query = new SqlCommand("select recipient_id from recipient where email='" + Session["Email"] + "'");
                 recipient_id_query.Connection = conn;
                 conn.Open();
                 recipient_id = Convert.ToInt32(recipient_id_query.ExecuteScalar().ToString());
 
-               
 
-                Session["recipient_id"] = recipient_id; 
+
+                Session["recipient_id"] = recipient_id;
                 Debug.WriteLine("Recipient_id = " + recipient_id.ToString());
-                conn.Close(); 
+                conn.Close();
 
             }
             SqlCommand cmd = new SqlCommand("select * from Donor where Donor_ID ='" + donor_id + "'");
@@ -55,9 +55,9 @@ namespace WebFormPractice
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                company_name = reader["company_name"].ToString();             
+                company_name = reader["company_name"].ToString();
             }
-            conn.Close(); 
+            conn.Close();
             LabelDonorHeader.Text = company_name;
 
 
@@ -105,19 +105,19 @@ namespace WebFormPractice
                         GridViewProducts.DataSource = dt;
                         GridViewProducts.DataBind();
                         myConnection.Close();
-                       
+
 
                     }
                 }
 
                 ViewState.Add("DataTable", dt);
                 ViewState.Add("CartTable", cart);
-                
+
             }
-            else if(IsPostBack) //if page is post back then load gridview from existing Data Table
+            else if (IsPostBack) //if page is post back then load gridview from existing Data Table
             {
                 Debug.WriteLine("In Postback code...");
-                
+
                 dt = ViewState["DataTable"] as DataTable; //reload table from view state to avoid table being null
                 cart = ViewState["CartTable"] as DataTable;
             }
@@ -125,15 +125,15 @@ namespace WebFormPractice
 
 
 
-            
-               
+
+
 
         } //end page load
         protected void GridViewProducts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (dt == null)
             {
-                Debug.WriteLine("data table is null in button click" );
+                Debug.WriteLine("data table is null in button click");
             }
 
             if (e.CommandName == "AddToCart")
@@ -143,9 +143,9 @@ namespace WebFormPractice
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewProducts.Rows[index];
 
-                
 
-               // row.Cells[1].Text.ToString();
+
+                // row.Cells[1].Text.ToString();
                 Debug.WriteLine("Row qunatity cell value = " + dt.Rows[index][3].ToString());
                 int quantity = Convert.ToInt32(dt.Rows[index][3].ToString());
 
@@ -163,14 +163,14 @@ namespace WebFormPractice
 
                     //if row exist on cart table. find out which row has that product and increment the quantity; 
                     //search for prod_id in cart data table prod_id column, if found get index of row.
-                    
+
                     DataRow searchedRow = cart.Rows.Find(dt.Rows[index][0]);
-                    int rowFoundIndex =  cart.Rows.IndexOf(searchedRow);
+                    int rowFoundIndex = cart.Rows.IndexOf(searchedRow);
                     Debug.WriteLine("index of selected row = " + rowFoundIndex);
 
-                    if( searchedRow != null) //row exists, update qunatity on existing
+                    if (searchedRow != null) //row exists, update qunatity on existing
                     {
-                        cart.Rows[rowFoundIndex][3] =   (Convert.ToInt32(cart.Rows[rowFoundIndex][3].ToString() )+ 1); 
+                        cart.Rows[rowFoundIndex][3] = (Convert.ToInt32(cart.Rows[rowFoundIndex][3].ToString()) + 1);
                         Debug.WriteLine("Row was found in cart table");
 
 
@@ -178,21 +178,21 @@ namespace WebFormPractice
                     else //new row needs added
                     {
                         DataRow dr = cart.NewRow();
-                       
+
 
                         dr["PROD_ID"] = Convert.ToInt32(dt.Rows[index][0].ToString());
                         dr["PROD_NAME"] = dt.Rows[index][1].ToString();
                         dr["PROD_SIZE"] = dt.Rows[index][2].ToString();
                         dr["PROD_STOCKQTY"] = 1;
                         dr["PROD_CATEGORY"] = dt.Rows[index][4].ToString();
-                      //  dr["PROD_STATUS"] = 'P'; 
+                        //  dr["PROD_STATUS"] = 'P'; 
                         dr["EXP_DATE"] = dt.Rows[index][5].ToString();
                         cart.Rows.Add(dr);
 
                         Debug.WriteLine(" new row value = dr[PROD_STOCKQTY] = " + dr["PROD_STOCKQTY"].ToString());
 
                     }
-                  
+
 
                     ViewState.Add("cartTable", cart);
 
@@ -210,7 +210,7 @@ namespace WebFormPractice
                 GridViewProducts.DataSource = dt;
                 GridViewProducts.DataBind();
             }
-            
+
 
 
         }
