@@ -101,35 +101,37 @@ namespace WebFormPractice
 
 
 
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
-            conn.Open();
-            string insertQuery = "insert into donor  (email, password,company_name, pickup_times,zip,LOC_NAME, LATITUDE, LONGITUDE) values (@email,@password,@company_name,@pickup_times,@zip,@locname,@lat,@long)";
-            SqlCommand com = new SqlCommand(insertQuery, conn);
+            //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
+            //conn.Open();
+            //string insertQuery = "insert into donor  (email, password,company_name, pickup_times, street_name,zip,LOC_NAME, LATITUDE, LONGITUDE) values (@email,@password,@company_name,@pickup_times,@street_name,@zip,@locname,@lat,@long)";
+            //SqlCommand com = new SqlCommand(insertQuery, conn);
 
 
 
 
 
-            com.Parameters.AddWithValue("@email", TextBoxEmail.Text);
-            com.Parameters.AddWithValue("@password", TextBoxPass.Text);
-            com.Parameters.AddWithValue("@company_name", TextBoxCompanyName.Text);
-            com.Parameters.AddWithValue("@pickup_times", TextBoxPickupTimes.Text);
-            com.Parameters.AddWithValue("@zip", TextBoxZip.Text);
-            com.Parameters.AddWithValue("@locname", TextBoxCity.Text);
-            com.Parameters.AddWithValue("@lat", TextBoxLatitude.Text);
-            com.Parameters.AddWithValue("@long", TextBoxLongitude.Text);
+            //com.Parameters.AddWithValue("@email", TextBoxEmail.Text);
+            //com.Parameters.AddWithValue("@password", TextBoxPass.Text);
+            //com.Parameters.AddWithValue("@company_name", TextBoxCompanyName.Text);
+            //com.Parameters.AddWithValue("@pickup_times", TextBoxPickupTimes.Text);
+            //com.Parameters.AddWithValue("@street_name", TextBoxStreetName);
+            //com.Parameters.AddWithValue("@zip", TextBoxZip.Text);
+            //com.Parameters.AddWithValue("@locname", TextBoxCity.Text);
+            //com.Parameters.AddWithValue("@lat", TextBoxLatitude.Text);
+            //com.Parameters.AddWithValue("@long", TextBoxLongitude.Text);
 
 
 
             SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
             conn2.Open();
-            string insertDonor = "INSERT INTO DONOR(EMAIL, PASSWORD, COMPANY_NAME, PICKUP_TIMES, ZIP,LOC_NAME,LATITUDE,LONGITUDE)" +
-                "VALUES (@email, @password, @company_name, @pickup_times, @zip, @loc_name, @latitude, @longitude)";
+            string insertDonor = "INSERT INTO DONOR(EMAIL, PASSWORD, COMPANY_NAME, PICKUP_TIMES,street_name, ZIP,LOC_NAME,LATITUDE,LONGITUDE)" +
+                "VALUES (@email, @password, @company_name, @pickup_times,@street_name, @zip, @loc_name, @latitude, @longitude)";
             SqlCommand cmd2 = new SqlCommand(insertDonor, conn2);
             cmd2.Parameters.AddWithValue("@email", TextBoxEmail.Text);
             cmd2.Parameters.AddWithValue("@password", TextBoxPass.Text);
             cmd2.Parameters.AddWithValue("@company_name", TextBoxCompanyName.Text);
             cmd2.Parameters.AddWithValue("@pickup_times", TextBoxPickupTimes.Text);
+            cmd2.Parameters.AddWithValue("@street_name", TextBoxStreetName.Text);
             cmd2.Parameters.AddWithValue("@zip", TextBoxZip.Text);
             cmd2.Parameters.AddWithValue("@loc_name", TextBoxCompanyName.Text);
             cmd2.Parameters.AddWithValue("@latitude", TextBoxLatitude.Text);

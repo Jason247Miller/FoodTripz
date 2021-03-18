@@ -57,9 +57,11 @@
                 <td>
                     <asp:Button ID="Button_Login" runat="server" OnClick="Button_Login_Click" Text="Login" Width="82px" />
                 </td>
-                <td style="width: 145px">&nbsp;</td>
+                <td style="width: 145px">
+                    <asp:Label ID="LabelPermission" runat="server" ForeColor="Black"></asp:Label>
+                </td>
             </tr>
-            <tr><td></td><td>
-                <a href="#" onclick="window.open('ForgotPassword.aspx', 'FP', 'width=700, height=200,top=400,left=500,fullscreen=no,resizeable=0');">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><td style="height: 94px"></td><td style="height: 94px">
+                <a href="#" onclick="window.open('ForgotPassword.aspx', 'FP', 'width=700, height=200,top=400,left=500,fullscreen=no,resizeable=0');">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="height: 94px"></td></tr>
             </table>
 </asp:Content>
