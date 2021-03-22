@@ -21,11 +21,11 @@ namespace WebFormPractice
             {
                 if (DropDownListUserType.SelectedValue == "Food Recipient")
                 {
-                    Response.Redirect("RecipientRegisteration.aspx");
+                    Response.Redirect("RecipientRegisteration.aspx", false);
                 }
                 else if(DropDownListUserType.SelectedValue == "Food Donor")
                 {
-                    Response.Redirect("DonorRegistrationPage.aspx");
+                    Response.Redirect("DonorRegistrationPage.aspx", false);
                 }
             }
         }

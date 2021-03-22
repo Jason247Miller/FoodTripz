@@ -16,13 +16,12 @@ namespace WebFormPractice
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Debug.WriteLine("pageload");
             if (IsPostBack)
             {
 
-                Debug.WriteLine("pageload postback");
 
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
+
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString);
                 conn.Open();
 
                 string checkuser = "select count(*) from Recipient where Email='" + TextBoxEmail.Text + "'";
@@ -53,15 +52,12 @@ namespace WebFormPractice
             Debug.WriteLine("inside button click");
 
 
-            string _connStr = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
+            string _connStr = ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString;
             string _query = "INSERT INTO RECIPIENT(FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUM,PASSWORD,ZIP) values(@fname,@lname, @email,@phone,@password,@zip)";
-           
-
-
             using (SqlConnection conn = new SqlConnection(_connStr))
             {
                 using (SqlCommand comm = new SqlCommand())
-                {   
+                {
                     comm.Connection = conn;
                     comm.CommandType = CommandType.Text;
                     comm.CommandText = _query;
@@ -73,7 +69,6 @@ namespace WebFormPractice
                     comm.Parameters.AddWithValue("@zip", TextBoxZip.Text);
                     try
                     {
-                        Debug.WriteLine("inside try");
                         conn.Open();
                         comm.ExecuteNonQuery();
                     }
@@ -82,9 +77,6 @@ namespace WebFormPractice
                     {
                         Response.Write("Error:" + ex.ToString());
                     }
-
-
-
                 }
             }
 
@@ -93,5 +85,10 @@ namespace WebFormPractice
 }
 
 
-
-
+            
+            
+            
+           
+           
+        
+    
