@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Web;
-using System.Diagnostics;
 
 namespace WebFormPractice
 {
@@ -23,13 +22,13 @@ namespace WebFormPractice
                 }
             }
 
-
+             
 
 
             string markers = GetMarkers();
 
-            //  if (postback) { }
-            Literal1.Text = @"<script type = 'text/javascript' >
+          //  if (postback) { }
+                Literal1.Text = @"<script type = 'text/javascript' >
                               
                  function initialize() {
                 
@@ -42,16 +41,16 @@ namespace WebFormPractice
             var myMap = new google.maps.Map(document.getElementById('mapArea'),
              mapOptions);
             " +
-        markers +
-         @" " +
-      "} </script> ";
-
-
+            markers +
+             @" " +
+          "} </script> ";
+            
+           
         }
         protected string GetMarkers()
         {
 
-
+           
             string markers = "";
             //string lat = "";
             //string lng = ""; 
@@ -59,7 +58,7 @@ namespace WebFormPractice
                 SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Database1"].ConnectionString))
             {
 
-
+               
 
 
 
@@ -72,36 +71,38 @@ namespace WebFormPractice
 
                 int i = 0;
 
+               
 
 
+                //while (reader.Read())
+                //{
 
 
-                
+                    while (reader.Read())
+                    {
+                       
 
-                while (reader.Read())
-                {
 
-                    
-
-                    i++;
-                    markers += @"var marker" + i.ToString() + @" = new google.maps.Marker({
+                        i++;
+                        markers += @"var marker" + i.ToString() + @" = new google.maps.Marker({
     position: new google.maps.LatLng(" + reader["lat"].ToString() + ", " +
-      reader["lng"].ToString() + ")," +
-      @"map: myMap,
+          reader["lng"].ToString() + ")," +
+          @"map: myMap,
      title: '" + reader["company"].ToString() + "'}); " +
-     @"var contentString = ""<div id='content'><h1>" + reader["company"].ToString() + "</h1><p>We have" +
-       @"plenty of items we need to donate!</p>" + @"<a href='PublicDonorPage.aspx?donorID=" + reader["donor_ID"].ToString() + "'" +
-       @">Visit their page</a></div>"";" +
-       @"var infowindow" + i.ToString() + " = new google.maps.InfoWindow({ content: contentString});" +
-     @"marker" + i.ToString() + ".addListener('click', function(){infowindow" + i.ToString() + ".open(" +
-     @"myMap,marker" + i.ToString() + "); });";
-                    Debug.WriteLine("company name for " + reader["donor_ID"].ToString() + " is " + reader["company"]); 
-                    
-
-                }
+         @"var contentString = ""<div id='content'><h1>" + reader["company"].ToString() + "</h1><p>We have" +
+           //pass donorID below
+           @"plenty of items we need to donate!</p>" + @"<a href='PublicDonorPage.aspx?donorID=" + reader["donor_ID"].ToString() + "'" +
+           @">Visit their page</a></div>"";" +
+           @"var infowindow = new google.maps.InfoWindow({ content: contentString});" +
+         @"marker" + i.ToString() + ".addListener('click', function(){infowindow.open(" +
+         @"myMap,marker" + i.ToString() + "); });";
 
 
-                
+
+                    }
+
+
+              //  }
                 con.Close();
             }
 
