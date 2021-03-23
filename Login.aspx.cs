@@ -31,14 +31,15 @@ namespace WebFormPractice
                 checkuser = "select count(*) from " + userType + " where Email='" + TextBoxEmail.Text + "'";
 
                 //open connection and command to determine if email exists
-                using (SqlConnection conn = new
-                SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString))
-                {   using (SqlCommand com = new SqlCommand(checkuser, conn))
-                    {
-                        conn.Open(); 
-                     temp = Convert.ToInt32(com.ExecuteScalar().ToString());
-                        conn.Close(); 
-                    }
+                try
+                {
+                    temp = checkEmail(checkuser); 
+                   
+                }
+                catch (Exception ex)
+                {
+                    LabelDbConnectionError.Visible = true;
+                    LabelDbConnectionError.Text = ex.ToString(); 
                 }
                 if (temp == 1) //email exists
                 {
@@ -83,6 +84,22 @@ namespace WebFormPractice
          
         }
 
+        private int checkEmail(string checkUser)
+        {
+
+            int temp = 0; 
+            using (SqlConnection conn = new
+                   SqlConnection(ConfigurationManager.ConnectionStrings["Database"].ConnectionString))
+            {
+                using (SqlCommand com = new SqlCommand(checkUser, conn))
+                {
+                    conn.Open();
+                    temp = Convert.ToInt32(com.ExecuteScalar().ToString());
+                    conn.Close();
+                }
+            }
+            return temp; 
+        }
         protected void LinkButtonForgotPassword_Click(object sender, EventArgs e)
         {
             Response.Redirect("ForgotPassword.aspx?Type=userType"); 

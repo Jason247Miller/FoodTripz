@@ -62,6 +62,7 @@
                 </td>
             </tr>
             <tr><td style="height: 94px"></td><td style="height: 94px">
-                <a href="#" onclick="window.open('ForgotPassword.aspx', 'FP', 'width=700, height=200,top=400,left=500,fullscreen=no,resizeable=0');">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="height: 94px"></td></tr>
+                <a href="#" onclick="window.open('ForgotPassword.aspx', 'FP', 'width=700, height=200,top=400,left=500,fullscreen=no,resizeable=0');">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="LabelDbConnectionError" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+                </td><td style="height: 94px"></td></tr>
             </table>
 </asp:Content>
