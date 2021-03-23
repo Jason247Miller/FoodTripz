@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdministratorHomePage.aspx.cs" Inherits="WebFormPractice.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminHomePage.aspx.cs" Inherits="WebFormPractice.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -10,14 +10,24 @@
             height: 919px;
             width: 1176px;
         }
+        .auto-style1 {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    
+
+    
     <form id="form1" runat="server">
+        <div >
+                <asp:LinkButton ID="logOff" runat="server" OnClick="LinkButton1_Click">Log Off</asp:LinkButton>
+            </div>
+        <div class="auto-style1">
         <div>
         </div>
-        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Admin Home Page"></asp:Label>
         <br />
+        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Admin Home Page"></asp:Label>
         <br />
         <br />
 
@@ -242,6 +252,7 @@
             </asp:GridView>
         </div>
         <br />
+        </div>
     </form>
 </body>
 </html>
