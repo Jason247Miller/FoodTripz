@@ -89,7 +89,7 @@ namespace WebFormPractice
 
             int temp = 0; 
             using (SqlConnection conn = new
-                   SqlConnection(ConfigurationManager.ConnectionStrings["Database"].ConnectionString))
+                   SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString))
             {
                 using (SqlCommand com = new SqlCommand(checkUser, conn))
                 {
