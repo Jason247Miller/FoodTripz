@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows;
+using System.Diagnostics; 
 
 namespace WebFormPractice
 { public partial class Login : System.Web.UI.Page
@@ -49,7 +50,9 @@ namespace WebFormPractice
                         Session["Email"] = TextBoxEmail.Text;
                         Session["logged"] = "loggedIN";
                         Response.Write("Password is correct");
+                        Debug.Write("usertype = " + userType);
                         Response.Redirect(userType + "HomePage.aspx");
+                     
                     }
                     else {
                         LabelPasswordInvalid.Visible = true; 

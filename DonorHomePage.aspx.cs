@@ -15,10 +15,16 @@ namespace WebFormPractice
             {
                 LabelWelcome.Text += " " + Session["Username"].ToString(); 
             }
-            else
-            {
-                Response.Redirect("Login.aspx"); 
-            }
+            
+            
+                if (!Page.IsPostBack)
+                {
+                    if (Session["logged"] == null)
+                    {
+                        Response.Redirect("Default.aspx");
+                    }
+                }
+            
         }
 
         protected void ButtonLogOut_Click(object sender, EventArgs e)
