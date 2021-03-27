@@ -56,6 +56,7 @@ namespace WebFormPractice
 
                 }
 
+                //validate grid coordinates
                 if (latEntered < -90 || latEntered > 90)
                 {
                     LabelLatitude.Text = "Latitude Must be between -90 and 90";
@@ -92,59 +93,40 @@ namespace WebFormPractice
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
 
-            Debug.WriteLine("page ");
-
-
-
             System.Diagnostics.Debug.WriteLine("inside database try statement");
-                string city = TextBoxCity.Text;
-                string longitude = TextBoxLongitude.Text;
-                string latitude = TextBoxLongitude.Text;
-                string _connStr = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
-               // string insertQuery = "insert into LOCATIONS  (LOC_NAME, LATITUDE, LONGITUDE) values (@locname,@lat,@long)";
-
-                //using (SqlConnection conn = new SqlConnection(_connStr))
-                //{
-                //    using (var insertData = new SqlCommand(insertQuery,conn))
-                //    {
-
-                //        insertData.CommandType = CommandType.Text;
-                //        insertData.CommandText = insertQuery;
-                //        insertData.Parameters.AddWithValue("@locname", city);
-                //        insertData.Parameters.AddWithValue("@lat", latitude);
-                //        insertData.Parameters.AddWithValue("@long", longitude);
-
-                //        conn.Open();
-                //        insertData.ExecuteNonQuery();
-                //        conn.Close(); 
+            string city = TextBoxCity.Text;
+            string longitude = TextBoxLongitude.Text;
+            string latitude = TextBoxLongitude.Text;
+            string _connStr = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
 
 
 
 
+            SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
+            conn2.Open();
+            //insert new donor into db
+            string insertDonor = "INSERT INTO DONOR(EMAIL, PASSWORD, COMPANY_NAME, PICKUP_TIMES,street_name, ZIP,LOC_NAME,LATITUDE,LONGITUDE)" +
+                "VALUES (@email, @password, @company_name, @pickup_times,@street_name, @zip, @loc_name, @latitude, @longitude)";
+            SqlCommand cmd2 = new SqlCommand(insertDonor, conn2);
+            cmd2.Parameters.AddWithValue("@email", TextBoxEmail.Text);
+            cmd2.Parameters.AddWithValue("@password", TextBoxPass.Text);
+            cmd2.Parameters.AddWithValue("@company_name", TextBoxCompanyName.Text);
+            cmd2.Parameters.AddWithValue("@pickup_times", TextBoxPickupTimes.Text);
+            cmd2.Parameters.AddWithValue("@street_name", TextBoxStreetName.Text);
+            cmd2.Parameters.AddWithValue("@zip", TextBoxZip.Text);
+            cmd2.Parameters.AddWithValue("@loc_name", TextBoxCompanyName.Text);
+            cmd2.Parameters.AddWithValue("@latitude", TextBoxLatitude.Text);
+            cmd2.Parameters.AddWithValue("@longitude", TextBoxLongitude.Text);
+            cmd2.ExecuteNonQuery();
+            conn2.Close();
 
-                //    }
-                //}
 
 
+                       
+                      
+           
 
 
-
-
-
-
-
-
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
-                conn.Open();
-                //insert donor location first
-                string insertQuery = "insert into LOCATIONS(LOC_NAME, LATITUDE, LONGITUDE) values(@loc_name, @latitude, @longitude)";
-
-                SqlCommand cmd = new SqlCommand(insertQuery, conn);
-                cmd.Parameters.AddWithValue("@loc_name", city);
-                cmd.Parameters.AddWithValue("@latitude", latitude);
-                cmd.Parameters.AddWithValue("@longitude", longitude);
-                cmd.ExecuteNonQuery();
-                conn.Close();
 
 
 
@@ -153,27 +135,7 @@ namespace WebFormPractice
             
             
 
-            //try
-            //{
-            //    //insert donor record second
-            //    SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
-            //    conn2.Open();
-            //    string insertDonor = "INSERT INTO DONOR(EMAIL, PASSWORD, COMPANY_NAME, PICKUP_TIMES, ZIP)" +
-            //        "VALUES (@email, @password, @company_name, @pickup_times, @zip";
-            //    SqlCommand cmd2 = new SqlCommand(insertDonor, conn2);
-            //    cmd2.Parameters.AddWithValue("@email", TextBoxEmail.Text);
-            //    cmd2.Parameters.AddWithValue("@password", TextBoxPass.Text);
-            //    cmd2.Parameters.AddWithValue("@company_name", TextBoxCompanyName.Text);
-            //    cmd2.Parameters.AddWithValue("@pickup_times", TextBoxPickupTimes.Text);
-            //    cmd2.Parameters.AddWithValue("@zip", TextBoxZip.Text);
-            //    cmd2.ExecuteNonQuery();
-            //    conn2.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.Write("Error from catch:" + ex.ToString());
-            //}
-
+           
 
         }
     }

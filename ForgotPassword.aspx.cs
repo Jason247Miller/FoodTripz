@@ -23,7 +23,7 @@ namespace WebFormPractice
 
         protected void ButtonPassword_Click(object sender, EventArgs e)
         {
-            string mainconn = ConfigurationManager.ConnectionStrings["RegistrationConnectionString"].ConnectionString;
+            string mainconn = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
             SqlConnection conn = new SqlConnection(mainconn);
             string sqlquery = "select Email, Password from " +  userType + " where Email=@Email";
             SqlCommand sqlcomm = new SqlCommand(sqlquery, conn);
@@ -45,6 +45,7 @@ namespace WebFormPractice
                 smtp.EnableSsl = true;
                 NetworkCredential nc = new NetworkCredential();
                 nc.UserName = "jason.miller.6695@gmail.com";
+                //
                 nc.Password = "";
                 smtp.UseDefaultCredentials = true;
                 smtp.Credentials = nc;

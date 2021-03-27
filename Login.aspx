@@ -40,7 +40,7 @@
                         <asp:ListItem>Select User Type</asp:ListItem>
                         <asp:ListItem Value="Donor">Food Donor</asp:ListItem>
                         <asp:ListItem Value="Recipient">Food Recipient</asp:ListItem>
-                        <asp:ListItem Value="Administrator">Administrator</asp:ListItem>
+                        <asp:ListItem Value="Admin">Administrator</asp:ListItem>
                     </asp:DropDownList>
                     <strong>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DropDownUserType" ErrorMessage="RequiredFieldValidator" ForeColor="Red" InitialValue="Select User Type">Select a user type</asp:RequiredFieldValidator>
@@ -57,9 +57,11 @@
                 <td>
                     <asp:Button ID="Button_Login" runat="server" OnClick="Button_Login_Click" Text="Login" Width="82px" />
                 </td>
-                <td style="width: 145px">&nbsp;</td>
+                <td style="width: 145px">
+                    <asp:Label ID="LabelPermission" runat="server" ForeColor="Black"></asp:Label>
+                </td>
             </tr>
-            <tr><td></td><td>
-                <a href="#" onclick="window.open('ForgotPassword.aspx', 'FP', 'width=700, height=200,top=400,left=500,fullscreen=no,resizeable=0');">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><td style="height: 94px"></td><td style="height: 94px">
+                <a href="#" onclick="window.open('ForgotPassword.aspx', 'FP', 'width=700, height=200,top=400,left=500,fullscreen=no,resizeable=0');">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="height: 94px"></td></tr>
             </table>
 </asp:Content>

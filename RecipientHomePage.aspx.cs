@@ -22,13 +22,13 @@ namespace WebFormPractice
                 }
             }
 
-             
+
 
 
             string markers = GetMarkers();
 
-          //  if (postback) { }
-                Literal1.Text = @"<script type = 'text/javascript' >
+            //  if (postback) { }
+            Literal1.Text = @"<script type = 'text/javascript' >
                               
                  function initialize() {
                 
@@ -41,47 +41,69 @@ namespace WebFormPractice
             var myMap = new google.maps.Map(document.getElementById('mapArea'),
              mapOptions);
             " +
-            markers +
-             @" " +
-          "} </script> ";
-            
-           
+        markers +
+         @" " +
+      "} </script> ";
+
+
         }
         protected string GetMarkers()
         {
+
+
             string markers = "";
             //string lat = "";
             //string lng = ""; 
             using (SqlConnection con = new
                 SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Database1"].ConnectionString))
             {
-                
-                SqlCommand cmd = new SqlCommand("SELECT Donor_ID as donor_ID, company_name as company, Latitude as lat, Longitude as lng FROM Donor inner join Locations on Donor.Location_ID = Locations.Location_ID");
+
+
+
+
+
+                //SqlCommand cmd = new SqlCommand("SELECT Donor_ID as donor_ID, company_name as company, Latitude as lat, Longitude as lng FROM Donor inner join Locations on Donor.Location_ID = Locations.Location_ID");
+                SqlCommand cmd = new SqlCommand("Select Donor_ID, company_name as company, latitude as lat, longitude as lng from donor");
                 cmd.Connection = con;
+
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 int i = 0;
+
+
+
+
+
                 while (reader.Read())
                 {
+
+
+
                     i++;
                     markers += @"var marker" + i.ToString() + @" = new google.maps.Marker({
     position: new google.maps.LatLng(" + reader["lat"].ToString() + ", " +
       reader["lng"].ToString() + ")," +
       @"map: myMap,
      title: '" + reader["company"].ToString() + "'}); " +
-     @"var contentString = ""<div id='content'><h1>" + reader["company"].ToString() + "</h1><p>We have" +
-                                                             //pass donorID below
-       @"plenty of items we need to donate!</p>"+ @"<a href='PublicDonorPage.aspx?donorID=" + reader["donor_ID"].ToString() + "'" +
+     @"var contentString" + i.ToString() + @" = ""<div id='content'><h1>" + reader["company"].ToString() + "</h1><p>We have" +
+       //pass donorID below
+       @"plenty of items we need to donate!</p>" + @"<a href='PublicDonorPage.aspx?donorID=" + reader["donor_ID"].ToString() + "'" +
        @">Visit their page</a></div>"";" +
-       @"var infowindow = new google.maps.InfoWindow({ content: contentString});" +
-     @"marker" + i.ToString() + ".addListener('click', function(){infowindow.open(" +
+       @"var infowindow" + i.ToString() + " = new google.maps.InfoWindow({ content: contentString" + i.ToString() + "});" +
+     @"marker" + i.ToString() + ".addListener('click', function(){infowindow" + i.ToString() + ".open(" +
      @"myMap,marker" + i.ToString() + "); });";
-  
+
+
 
                 }
+
+
+
+                con.Close();
             }
-            
+
+
             return markers;
 
         }
