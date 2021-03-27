@@ -10,7 +10,7 @@ namespace WebFormPractice
     public partial class DonorHomePage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   //page is not finished
             if (Session["Username"]!= null)
             {
                 LabelWelcome.Text += " " + Session["Username"].ToString(); 

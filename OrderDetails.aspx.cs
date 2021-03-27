@@ -16,6 +16,7 @@ namespace WebFormPractice
         {   DataTable cart;
             cart = (DataTable)Session["cartSession"];
             CrystalReport1 crpt = new CrystalReport1();
+            //load crytal report for cart data table
             crpt.Database.Tables["DataTable1"].SetDataSource(cart);
             CrystalReportViewer1.ReportSource = null;
             CrystalReportViewer1.ReportSource = crpt;

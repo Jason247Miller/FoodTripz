@@ -15,7 +15,7 @@ namespace WebFormPractice
     {
         public string userType;
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   //clear cache to close session 
             Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();
@@ -39,7 +39,7 @@ namespace WebFormPractice
                 SqlCommand com = new SqlCommand(checkuser, conn);
                 int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
                 conn.Close();
-                if (temp == 1) //email exists
+                if (temp == 1) //if email exists
                 {
                     conn.Open();
                     string checkPasswordQuery = "select Password from " + userType + " where Email='" +
@@ -75,7 +75,7 @@ namespace WebFormPractice
             conn.Close();
 
         }
-        private bool verifyDonor()
+        private bool verifyDonor() //Verify Donor exists and has appropriate access
         {
             bool permitted = false;
             SqlConnection conn3 = new
