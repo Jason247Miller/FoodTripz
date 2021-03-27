@@ -56,6 +56,7 @@ namespace WebFormPractice
 
                 }
 
+                //validate grid coordinates
                 if (latEntered < -90 || latEntered > 90)
                 {
                     LabelLatitude.Text = "Latitude Must be between -90 and 90";
@@ -101,29 +102,9 @@ namespace WebFormPractice
 
 
 
-            //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
-            //conn.Open();
-            //string insertQuery = "insert into donor  (email, password,company_name, pickup_times, street_name,zip,LOC_NAME, LATITUDE, LONGITUDE) values (@email,@password,@company_name,@pickup_times,@street_name,@zip,@locname,@lat,@long)";
-            //SqlCommand com = new SqlCommand(insertQuery, conn);
-
-
-
-
-
-            //com.Parameters.AddWithValue("@email", TextBoxEmail.Text);
-            //com.Parameters.AddWithValue("@password", TextBoxPass.Text);
-            //com.Parameters.AddWithValue("@company_name", TextBoxCompanyName.Text);
-            //com.Parameters.AddWithValue("@pickup_times", TextBoxPickupTimes.Text);
-            //com.Parameters.AddWithValue("@street_name", TextBoxStreetName);
-            //com.Parameters.AddWithValue("@zip", TextBoxZip.Text);
-            //com.Parameters.AddWithValue("@locname", TextBoxCity.Text);
-            //com.Parameters.AddWithValue("@lat", TextBoxLatitude.Text);
-            //com.Parameters.AddWithValue("@long", TextBoxLongitude.Text);
-
-
-
             SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
             conn2.Open();
+            //insert new donor into db
             string insertDonor = "INSERT INTO DONOR(EMAIL, PASSWORD, COMPANY_NAME, PICKUP_TIMES,street_name, ZIP,LOC_NAME,LATITUDE,LONGITUDE)" +
                 "VALUES (@email, @password, @company_name, @pickup_times,@street_name, @zip, @loc_name, @latitude, @longitude)";
             SqlCommand cmd2 = new SqlCommand(insertDonor, conn2);

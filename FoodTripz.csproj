@@ -788,7 +788,7 @@
     <Content Include="Login.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="AdministratorHomePage.aspx" />
+    <Content Include="AdminHomePage.aspx" />
     <Content Include="OrderDetails.aspx" />
     <Content Include="PublicDonorPage.aspx" />
     <Content Include="RecipientHomePage.aspx" />
@@ -903,12 +903,12 @@
       <DependentUpon>Login.aspx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="AdministratorHomePage.aspx.cs">
-      <DependentUpon>AdministratorHomePage.aspx</DependentUpon>
+    <Compile Include="AdminHomePage.aspx.cs">
+      <DependentUpon>AdminHomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdministratorHomePage.aspx.designer.cs">
-      <DependentUpon>AdministratorHomePage.aspx</DependentUpon>
+    <Compile Include="AdminHomePage.aspx.designer.cs">
+      <DependentUpon>AdminHomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="OrderDetails.aspx.cs">
       <DependentUpon>OrderDetails.aspx</DependentUpon>
