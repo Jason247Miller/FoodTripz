@@ -8,7 +8,8 @@
 
     <table class="nav-justified" style="height: 537px">
         <tr>
-            <td style="width: 217px; height: 60px"></td>
+            <td style="width: 217px; height: 60px">
+                &nbsp;</td>
             <td style="width: 780px; height: 60px">
                 <h1 class="text-center">Review Items in Cart</h1>
                 <p class="text-center">
@@ -47,6 +48,7 @@
             <td style="width: 217px" class="modal-sm">&nbsp;</td>
             <td style="width: 780px">
                 <asp:Button ID="ButtonOrder" runat="server" OnClick="ButtonOrder_Click" Text="Complete Order" Width="134px" />
+                <asp:Button ID="ButtonShop" runat="server" OnClick="ButtonShop_Click" Text="Return to Product Display" Width="185px" />
             </td>
             <td>&nbsp;</td>
         </tr>

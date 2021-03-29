@@ -12,9 +12,9 @@ namespace WebFormPractice
     public partial class PublicDonorPage : System.Web.UI.Page
     {
         private string donor_id;
-        public DataTable dt;
+        private DataTable dt;
         private string company_name;
-        public int quantity;
+        private int quantity;
         DataTable cart;
 
 
@@ -24,12 +24,13 @@ namespace WebFormPractice
         protected void Page_Load(object sender, EventArgs e)
 
         {   //create an empty cart instance to take values added from products table and placed on gridview on order page. 
-
+           
 
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
             if (Request.QueryString["donorID"] != null) //if a param is passed
             {
-                donor_id = Request.QueryString["donorID"];
+                Session["Donor_ID"] = Request.QueryString["donorID"];
+                donor_id = Session["Donor_ID"].ToString(); 
                 LabelDonorHeader.Text = company_name;
             }
 
@@ -59,13 +60,26 @@ namespace WebFormPractice
             }
             conn.Close();
             LabelDonorHeader.Text = company_name;
-
-
-            if (!IsPostBack)//if page is not post back load gridview from db
+            string fromCart = ""; 
+            if (Session["FromCart"] != null)
             {
+                 fromCart = Session["FromCart"].ToString();
+            }
 
+            if (!IsPostBack && fromCart == "true")//if page is not post back load gridview from db
+            {
+                dt = (DataTable)Session["DataTable"];
+                cart = (DataTable)Session["CartTable"];
+
+                GridViewProducts.DataSource = dt;
+                GridViewProducts.DataBind();
+
+
+            }
+            else if (!IsPostBack)
+            {
                 Debug.WriteLine("Initial Load...not postback");
-
+                donor_id = Session["Donor_ID"].ToString();
 
                 //Data Table to act as the data source for the gridview. 
                 dt = new DataTable();
@@ -97,6 +111,7 @@ namespace WebFormPractice
                     {
                         //query all products that are available
                         myConnection.Open();
+                        Debug.WriteLine("DOnor_id = " + donor_id);
                         string show = @"SELECT * FROM PRODUCT where donor_id = " + donor_id;
                         SqlCommand sq = new SqlCommand(show, myConnection);
 
@@ -110,16 +125,19 @@ namespace WebFormPractice
                     }
                 }
 
-                ViewState.Add("DataTable", dt);
-                ViewState.Add("CartTable", cart);
-
+                Session["DataTable"] = dt;
+                Session["CartTable"] = cart;
+           
             }
+
+
             else if (IsPostBack) //if page is post back then load gridview from existing Data Table
             {
                 Debug.WriteLine("In Postback code...");
 
-                dt = ViewState["DataTable"] as DataTable; //reload table from view state to avoid table being null
-                cart = ViewState["CartTable"] as DataTable;
+                dt = (DataTable)Session["DataTable"];
+                cart = (DataTable)Session["CartTable"]; 
+                
             }
 
 
@@ -155,7 +173,9 @@ namespace WebFormPractice
                 {   //deduct quanttiy from Gridview Data source
                     quantity = quantity - 1;
                     dt.Rows[index][3] = quantity;
-                    ViewState.Add("DataTable", dt);
+
+                    Session["DataTable"] = dt; 
+                   // ViewState.Add("DataTable", dt);
 
 
 
@@ -193,8 +213,8 @@ namespace WebFormPractice
 
                     }
 
-
-                    ViewState.Add("cartTable", cart);
+                    Session["CartTable"] = cart; 
+                    //ViewState.Add("cartTable", cart);
 
 
 
@@ -218,7 +238,9 @@ namespace WebFormPractice
         protected void ButtonGoToCart_Click(object sender, EventArgs e)
         {
             //saves cart into session var and redirects to cart page
-            Session.Add("cartSession", cart);
+           // Session.Add("cartSession", cart);
+            Session["CartTable"] = cart;
+            Session["DataTable"] = dt;  
             Response.Redirect("Cart.aspx");
         }
     }

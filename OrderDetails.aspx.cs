@@ -18,6 +18,10 @@ namespace WebFormPractice
             CrystalReport1 crpt = new CrystalReport1();
             //load crytal report for cart data table
             crpt.Database.Tables["DataTable1"].SetDataSource(cart);
+            crpt.Database.Tables["DataTable1"].LogOnInfo.ConnectionInfo.UserID = "Jason";
+            crpt.Database.Tables["DataTable1"].LogOnInfo.ConnectionInfo.Password = "pass";
+            crpt.Database.Tables["DataTable1"].LogOnInfo.ConnectionInfo.ServerName = "server";
+
             CrystalReportViewer1.ReportSource = null;
             CrystalReportViewer1.ReportSource = crpt;
 

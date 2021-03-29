@@ -4,44 +4,37 @@ using System.Diagnostics;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Collections;
 
 namespace WebFormPractice
 {
     public partial class Cart : System.Web.UI.Page
     {
-        DataTable cart; 
+        DataTable cart;
+        DataTable dt; 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            dt = (DataTable)Session["DataTable"]; 
+           
             if (!IsPostBack)
             {
 
 
                 Debug.WriteLine("Initial Page Laod");
                 //copy over cart instance from publicDonorPage
-                cart = (DataTable)Session["cartSession"];
+                cart = (DataTable)Session["CartTable"];
 
 
                 GridViewCart.DataSource = cart;
                 GridViewCart.DataBind();
 
 
-                ViewState.Add("cart", cart);
+                //ViewState.Add("cart", cart);
             }
             else if (IsPostBack)
             {
-
-                cart = ViewState["cart"] as DataTable;
-                //GridViewCart.DataSource = cart;
-               // GridViewCart.DataBind();
+                cart = (DataTable)Session["CartTable"];
+               // cart = ViewState["cart"] as DataTable;
             }
-
-
-
-
-
-
         }
 
         protected void GridViewCart_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -54,16 +47,32 @@ namespace WebFormPractice
                 int index = Convert.ToInt32(e.CommandArgument);
                 Debug.WriteLine("Row qunatity cell value = " + cart.Rows[index][3].ToString());
                 int quantity = Convert.ToInt32(cart.Rows[index][3].ToString());
+                //get product_id of selected row
+                //index 0 is prod_id
+                int prod_id = Convert.ToInt32(cart.Rows[index][0].ToString());
+
+                //reference row in dt with product_id obtained 
+                string searchExpression = "PROD_ID = " + prod_id.ToString();
+                DataRow[] dtrow = dt.Select(searchExpression);
+                DataRow matchedDtRow = dtrow[0]; 
+
+                //add 1 to quantity after subtracting 1 from qunaity in cart
                 if(quantity > 1)
                 {
+
+                    Debug.WriteLine("prod_id of matched row = " + prod_id.ToString());
+                    Debug.WriteLine("qunatity of row = " + matchedDtRow[3].ToString()); 
                     cart.Rows[index][3] = (Convert.ToInt32(cart.Rows[index][3]) - 1) ;
+                     matchedDtRow[3] = (Convert.ToInt32(matchedDtRow[3]) + 1);
+
                 }
                 else
                 {
                     cart.Rows[index].Delete();
+                    matchedDtRow[3] = (Convert.ToInt32(matchedDtRow[3]) + 1);
                 }
-                ViewState.Add("cart", cart);
-                //update gridview with any changes
+                Session["CartTable"] = cart;
+                Session["DataTable"] = dt; 
                 GridViewCart.DataSource = cart;
                 GridViewCart.DataBind();
 
@@ -74,69 +83,66 @@ namespace WebFormPractice
         protected void ButtonOrder_Click(object sender, EventArgs e)
         {
 
-            Debug.WriteLine("Recipient_id = " + Session["recipient_id"].ToString());
+            
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Database1"].ConnectionString);
 
+            //insert recipient_id to create an order entry in the orders table
             SqlCommand orders_insert = new SqlCommand("insert into orders (REC_ID) values (" + " '" + Session["recipient_id"].ToString() + "'" +")" );
             orders_insert.Connection = conn;
             conn.Open();
             orders_insert.ExecuteScalar();
 
-            SqlCommand query_order_id = new SqlCommand("Select order_id from ORDERS where rec_id = " + Session["recipient_id"].ToString());
-            query_order_id.Connection = conn;
-            int order_id = Convert.ToInt32(query_order_id.ExecuteScalar().ToString()); 
-           
+            //query the recipients order_id
+            // SqlCommand query_order_id = new SqlCommand("Select order_id from ORDERS where rec_id = " + Session["recipient_id"].ToString());
+            SqlCommand query_order_id = new SqlCommand("Select MAX(ORDER_ID) from orders");
+ 
+             query_order_id.Connection = conn;
+            int order_id = Convert.ToInt32(query_order_id.ExecuteScalar().ToString());
+
+            Debug.WriteLine("Order ID = " + order_id.ToString());
             Session["order_id"] = order_id;
 
-            Debug.WriteLine("Session order ID = " + Session["order_id"].ToString());
-
-            //array to store the product ID so they can later be deleted from teh table 
-           
-
-           
-            //foreach row in the cart table, copy its details into the order_line table 
+       
+            //insert cart contents into order_line table 
             foreach (DataRow row in cart.Rows)
             {
 
                 int prod_id = Convert.ToInt32(row[0]);
                 int quantity_ordered = Convert.ToInt32(row[3]);
-                //get quantity ordered from cart and store it into a variable 
-              
-                Debug.WriteLine("quantity ordered of product_id " + prod_id.ToString() + "is " + quantity_ordered.ToString());
-
-                Debug.WriteLine("prod_id = " + prod_id.ToString());
-              
-
-                SqlCommand order_item_line = new SqlCommand("insert into order_item_line (prod_id, order_id,quantity_ordered) values ( '" + prod_id.ToString() + "','" + Session["order_id"].ToString() + "' ,'" + quantity_ordered.ToString() + "')");
+                SqlCommand order_item_line = new SqlCommand("insert into order_item_line (prod_id, order_id,quantity_ordered) values ( '" + prod_id.ToString() +
+                    "','" + Session["order_id"].ToString() + "' ,'" + quantity_ordered.ToString() + "')");
                 order_item_line.Connection = conn;
                 order_item_line.ExecuteScalar();
 
                 
-                //query Products Product_id and subtract quantity ordered
+                //query current product quantity and subtract by quantity ordered
                 SqlCommand queryQtyInStock = new SqlCommand("Select PROD_STOCKQTY from PRODUCT where PROD_ID = " + prod_id.ToString());
                 queryQtyInStock.Connection = conn;
                 int quantityInStock = Convert.ToInt32(queryQtyInStock.ExecuteScalar().ToString());
-                quantityInStock = quantityInStock - quantity_ordered;
-
-                //insert new quantity into Product table
+                quantityInStock = quantityInStock - quantity_ordered;     
                 SqlCommand quantityStockInsert = new SqlCommand("UPDATE PRODUCT SET PROD_STOCKQTY = " + quantityInStock.ToString() + 
                                                                 "WHERE prod_id = " + prod_id.ToString());
                 quantityStockInsert.Connection = conn;
                 quantityStockInsert.ExecuteScalar();
-
-
-
-
             }
 
             conn.Close();
             
-            Session["cartSession"] = cart;
+            Session["CartTable"] = cart;
 
             Response.Redirect("OrderDetails.aspx");
-            //insert everything remaining in cart into the order_line table and create an order
-            // redirect to order page
-            // order page will display order in a tax receipt format. 
+ 
+        }
+
+        protected void ButtonShop_Click(object sender, EventArgs e)
+        {   
+           
+            
+            Session["CartTable"] = cart;
+            Session["DataTable"] = dt;
+            Session["FromCart"] = "true"; 
+            Response.Redirect("PublicDonorPage.aspx"); 
+
         }
     }
 }
