@@ -12,8 +12,7 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelWidth="200px" Width="1104px" OnInit="CrystalReportViewer1_Init" />
-        <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
+       
             <Report FileName="CrystalReport1.rpt">
             </Report>
         </CR:CrystalReportSource>

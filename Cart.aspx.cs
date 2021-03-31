@@ -98,6 +98,8 @@ namespace WebFormPractice
  
              query_order_id.Connection = conn;
             int order_id = Convert.ToInt32(query_order_id.ExecuteScalar().ToString());
+            //store orderNumber to be used later in orderDetails
+            Session["orderNumber"] = order_id.ToString(); 
 
             Debug.WriteLine("Order ID = " + order_id.ToString());
             Session["order_id"] = order_id;
