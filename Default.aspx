@@ -4,7 +4,7 @@
 
     <div class="jumbotron">
         <h1>Welcome to Food Tripz</h1>
-        <p class="lead"></p>
+        <p class="lead">&nbsp;</p>
     </div>
 
     <div class="row">

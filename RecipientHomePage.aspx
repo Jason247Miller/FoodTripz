@@ -48,6 +48,9 @@
             background-color: #333;
             text-align: left;
         }
+        .auto-style3 {
+            background-color: #0094ff;
+        }
     </style>
     
        <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYS0GMYNJSbBAwpNI7VK_0vuLZB25Rgkc">
@@ -61,7 +64,7 @@
        
     </script>
 </head>
-<body onload="initialize()">
+<body class="auto-style3" onload="initialize()">
     
     <form id="form1" runat="server">
         
@@ -71,15 +74,19 @@
       
 
  
-        <asp:LinkButton ID="LinkButtonLogOff" runat="server" OnClick="LinkButtonLogOff_Click">Log Off</asp:LinkButton>
+        <asp:LinkButton ID="LinkButtonLogOff" runat="server" OnClick="LinkButtonLogOff_Click" ForeColor="White">Log Off</asp:LinkButton>
         
       
       
 
  
 </div>
-    <h1>Use the map to find Donors near you!</h1>
-    <h3>Simply click on a red marker to learn more about each donor.</h3>
+    <h1>
+        <asp:Label ID="Label1" runat="server" ForeColor="White" Text="Use the map to find Donors near you!"></asp:Label>
+        </h1>
+    <h3>
+        <asp:Label ID="Label2" runat="server" ForeColor="White" Text="Simply click on a red marker to learn more about each donor."></asp:Label>
+        </h3>
     
     <hr />
         <label id ="messageLbl"></label>

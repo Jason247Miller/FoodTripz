@@ -15,6 +15,15 @@ namespace WebFormPractice
     {
 
         /// <summary>
+        /// ButtonLogOff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonLogOff;
+
+        /// <summary>
         /// LabelWelcome control.
         /// </summary>
         /// <remarks>
@@ -24,12 +33,30 @@ namespace WebFormPractice
         protected global::System.Web.UI.WebControls.Label LabelWelcome;
 
         /// <summary>
-        /// ButtonLogOut control.
+        /// GridViewProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonLogOut;
+        protected global::System.Web.UI.WebControls.GridView GridViewProducts;
+
+        /// <summary>
+        /// Database1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Database1;
+
+        /// <summary>
+        /// LabelProductsEmpty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelProductsEmpty;
     }
 }

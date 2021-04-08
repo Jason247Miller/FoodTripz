@@ -7,7 +7,7 @@
 
   
         <div>
-            <div class="text-left">
+            <div class="text-center">
                 <strong>
                 <asp:Label ID="LabelDonorHeader" runat="server" style="font-size: xx-large" Text="Label"></asp:Label>
                 </strong>
@@ -45,16 +45,23 @@
                         </div>
                        <div style="height: 79px">
 
-                <strong>
+                
+                    <div>
+                        <div class="text-left">
 
                            <asp:Button ID="ButtonGoToCart" runat="server" Text="Go To Cart" OnClick="ButtonGoToCart_Click" />
-
-                </strong>
+                            <asp:Button ID="ButtonMap" runat="server" OnClick="ButtonMap_Click" Text="Return to Map" />
+                        </div>
+                        <div>
+                            </div>
+                    </div>
+               
 
                        </div>
                         
 
                         </div>
+                           <asp:Label ID="LabelEmptyProducts" runat="server" Text="Unfortunately , this Donor has no Products listed at this time. Please try again later. " Visible="False"></asp:Label>
                 </strong>
     </div>
             </div>
