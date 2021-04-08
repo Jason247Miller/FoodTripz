@@ -70,11 +70,8 @@ namespace WebFormPractice
             {
                 dt = (DataTable)Session["DataTable"];
                 cart = (DataTable)Session["CartTable"];
-
                 GridViewProducts.DataSource = dt;
                 GridViewProducts.DataBind();
-
-
             }
             else if (!IsPostBack)
             {
@@ -117,6 +114,7 @@ namespace WebFormPractice
 
                         SqlDataReader sr = sq.ExecuteReader();
                         dt.Load(sr);
+                        emptyMessage(dt); 
                         GridViewProducts.DataSource = dt;
                         GridViewProducts.DataBind();
                         myConnection.Close();
@@ -242,6 +240,25 @@ namespace WebFormPractice
             Session["CartTable"] = cart;
             Session["DataTable"] = dt;  
             Response.Redirect("Cart.aspx");
+        }
+        protected void emptyMessage(DataTable dt)
+        {
+            if(dt.Rows.Count < 1)
+            {
+                LabelEmptyProducts.Visible = true;
+                ButtonGoToCart.Visible = false;
+            }
+            else
+            {
+                LabelEmptyProducts.Visible = false;
+                ButtonGoToCart.Visible = true;
+            }
+
+        }
+
+        protected void ButtonMap_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RecipientHomePage.aspx", false); 
         }
     }
 }

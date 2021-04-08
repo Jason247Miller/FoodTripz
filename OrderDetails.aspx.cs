@@ -46,7 +46,7 @@ namespace WebFormPractice
 
             //Creates a text element to add the invoice number
             PdfTextElement element = new PdfTextElement("ORDER_NUMBER:" + orderDetails[0] + 
-                                                       " COMPANY:" + orderDetails[1] + "PICKUP TIMES:" + 
+                                                       " " + orderDetails[1] + "PICKUP TIMES:" + 
                                                         orderDetails[2], subHeadingFont);
             element.Brush = PdfBrushes.White;
 
@@ -54,7 +54,7 @@ namespace WebFormPractice
             PdfLayoutResult result = element.Draw(page, new PointF(10, bounds.Top + 8));
             PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
             graphics.DrawString("Food Tripz", font, PdfBrushes.Black, new PointF(0,0));
-            string currentDate = "DATE " + DateTime.Now.ToString("MM/dd/yyyy");
+            string currentDate = "DATE:" + DateTime.Now.ToString("MM/dd/yyyy");
             //Measures the width of the text to place it in the correct location
             SizeF textSize = subHeadingFont.MeasureString(currentDate);
             PointF textPosition = new PointF(graphics.ClientSize.Width - textSize.Width - 10, result.Bounds.Y);
